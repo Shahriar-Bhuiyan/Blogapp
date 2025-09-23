@@ -1,0 +1,34 @@
+1. cateroy
+2.Tag
+3.User
+4.Post
+5.comment
+
+
+
+Blog and cateroy == one to many
+
+cateroy logic
+
+python ---> 5 ta BBlog
+
+1 log justa ekta cateroy tei thakte parbbe
+
+
+Post and Tag == Many To Many 
+
+tag 
+backend -> 5 ta blog
+
+1 ta blog chaile mulitple tag uder e thakte parbe 
+
+
+
+user, post  one to many
+1 user ---> multiple post  (blog)
+
+
+user comment one to many 
+
+comment , Post - 
+1 user --> mutiple commet 
