@@ -22,7 +22,7 @@ class Post(models.Model):
     content = RichTextField()
     author = models.ForeignKey(User, on_delete=models.CASCADE)
     tag = models.ManyToManyField(Tag)
-    Category = models.ForeignKey(Category,on_delete=models.CASCADE)
+    category = models.ForeignKey(Category,on_delete=models.CASCADE)
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now = True)
     liked_user = models.ManyToManyField(User, related_name='liked_posts')
