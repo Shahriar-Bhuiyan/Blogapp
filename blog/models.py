@@ -26,6 +26,7 @@ class Post(models.Model):
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now = True)
     liked_user = models.ManyToManyField(User, related_name='liked_posts')
+    view_count = models.PositiveBigIntegerField(default=0)
     
     def __str__(self):
           return self.title

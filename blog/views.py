@@ -42,7 +42,7 @@ def post_list(request):
         'search_query': searchQ,
         'category_query':categoryQ,
         'tag_query': tagQ
-  
+        
     }
     
     return render(request,'blog_posts.html',context)
@@ -76,7 +76,46 @@ def post_update(request,id):
 
 
 def post_delete(request,id):
-    post = get_object_or_404(Post,id = id)
+    
+    post = get_object_or_404(Post,id=id)
     post.delete()
-    return redirect()
+    return redirect('')
 
+def post_details(request,id):
+     
+     post = get_object_or_404(Post,id)
+     
+     if request.method == "POST":
+         form = forms.CommentForm(request.POST)
+         if form.is_valid():
+             comment = form.save(commit=False)
+             comment.user = request.user
+             comment.save()
+             return redirect("")
+     else:
+        form = forms.CommentForm()
+        
+    
+    #liked
+    
+     comments = post.comment_set.all()
+     is_liked = post.liked_user.filter(id = request.user.id).exists()
+     like_count = post.liked_user.count()
+     
+     print(comments)
+    #likecount
+
+     context = {
+         'post': post,
+         'categories': Category.objects.all(),
+         'tag': Tag.objects.all(),
+         'comments':comments,
+         'is_liked': is_liked,
+         'like_count':like_count,
+         
+     }
+     post.view_count +=1
+     
+     post.save()
+     
+     return render(request,'',context)
